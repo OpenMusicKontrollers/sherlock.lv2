@@ -34,6 +34,7 @@ struct _handle_t {
 
 	LV2_URID time_position;
 	LV2_URID time_frame;
+	LV2_URID sherlock_matchAll;
 
 	int64_t frame;
 
@@ -73,6 +74,7 @@ instantiate(const LV2_Descriptor* descriptor, double rate,
 
 	handle->time_position = handle->map->map(handle->map->handle, LV2_TIME__Position);
 	handle->time_frame = handle->map->map(handle->map->handle, LV2_TIME__frame);
+	handle->sherlock_matchAll = handle->map->map(handle->map->handle, SHERLOCK_URI"#matchAll");
 
 	lv2_atom_forge_init(&handle->through.forge, handle->map);
 	lv2_atom_forge_init(&handle->notify.forge, handle->map);
@@ -240,10 +242,18 @@ run(LV2_Handle instance, uint32_t nsamples)
 	LV2_ATOM_SEQUENCE_FOREACH(handle->control, ev)
 	{
 		const LV2_Atom_Object *obj = (const LV2_Atom_Object *)&ev->body;
+		bool type_matches;
 
-		const bool type_matches = lv2_atom_forge_is_object_type(&notify->forge, obj->atom.type)
-			? (obj->body.otype == handle->state.filter)
-			: (obj->atom.type == handle->state.filter);
+		if(handle->state.filter == handle->sherlock_matchAll)
+		{
+			type_matches = true;
+		}
+		else
+		{
+			type_matches = lv2_atom_forge_is_object_type(&notify->forge, obj->atom.type)
+				? (obj->body.otype == handle->state.filter)
+				: (obj->atom.type == handle->state.filter);
+		}
 
 		if(  (!handle->state.negate && type_matches)
 			|| (handle->state.negate && !type_matches) )

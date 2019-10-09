@@ -88,8 +88,8 @@ sherlock:trace
 
 sherlock:filter
 	a lv2:Parameter ;
-	rdfs:label "Filter" ;
-	rdfs:comment "Filter events according to type or object type" ;
+	rdfs:label "Match" ;
+	rdfs:comment "Match events according to type or object type" ;
 	rdfs:range atom:URI .
 
 sherlock:negate
@@ -164,7 +164,7 @@ sherlock:atom_inspector
 		sherlock:follow true ;
 		sherlock:pretty true ;
 		sherlock:trace false ;
-		sherlock:filter time:Position ;
+		sherlock:filter sherlock:matchAll ;
 		sherlock:negate true ;
 	] .
 

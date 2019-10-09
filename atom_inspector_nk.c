@@ -172,26 +172,63 @@ _atom_inspector_expose(struct nk_context *ctx, struct nk_rect wbounds, void *dat
 					handle->filter = handle->state.filter;
 				}
 
-				nk_layout_row_dynamic(ctx, widget_h, 1);
-				const nk_flags flags = NK_EDIT_FIELD
-					| NK_EDIT_AUTO_SELECT
-					| NK_EDIT_SIG_ENTER;
-				//nk_edit_focus(ctx, flags);
-				nk_flags mode = nk_edit_string_zero_terminated(ctx, flags, handle->filter_uri, sizeof(handle->filter_uri) - 1, nk_filter_ascii);
-				if(mode & NK_EDIT_COMMITED)
+				bool dirty = false;
+
+				const float n = 4;
+				const float r0 = 1.f / n;
+				const float r1 = 0.1f / 3;
+				const float r2 = r0 - r1;
+				const float footer [5] = {r1+r2, r1+r2, r1+r2, r1, r2};
+				nk_layout_row(ctx, NK_DYNAMIC, widget_h, 5, footer);
 				{
-					if(strlen(handle->filter_uri) == 0)
+					nk_label(ctx, "match:", NK_TEXT_LEFT);
+
+					if(nk_button_label(ctx, "time"))
 					{
 						strncpy(handle->filter_uri, LV2_TIME__Position, sizeof(handle->filter_uri) - 1);
+						dirty = true;
 					}
 
-					handle->state.filter = handle->map->map(handle->map->handle, handle->filter_uri);
+					if(nk_button_label(ctx, "all"))
+					{
+						strncpy(handle->filter_uri, SHERLOCK_URI"#matchAll", sizeof(handle->filter_uri) - 1);
+						dirty = true;
+					}
 
+					const int32_t state_negate = _check(ctx, handle->state.negate);
+					if(state_negate != handle->state.negate)
+					{
+						handle->state.negate = state_negate;
+						_set_bool(handle, handle->urid.negate, handle->state.negate);
+					}
+					nk_label(ctx, "negate", NK_TEXT_LEFT);
+				}
+
+				nk_layout_row_dynamic(ctx, widget_h, 1);
+				{
+					const nk_flags flags = NK_EDIT_FIELD
+						| NK_EDIT_AUTO_SELECT
+						| NK_EDIT_SIG_ENTER;
+					//nk_edit_focus(ctx, flags);
+					nk_flags mode = nk_edit_string_zero_terminated(ctx, flags, handle->filter_uri, sizeof(handle->filter_uri) - 1, nk_filter_ascii);
+					if(mode & NK_EDIT_COMMITED)
+					{
+						if(strlen(handle->filter_uri) == 0)
+						{
+							strncpy(handle->filter_uri, SHERLOCK_URI"#matchAll", sizeof(handle->filter_uri) - 1);
+						}
+						dirty = true;
+					}
+				}
+
+				if(dirty)
+				{
+					handle->state.filter = handle->map->map(handle->map->handle, handle->filter_uri);
 					_set_urid(handle, handle->urid.filter, handle->state.filter);
 				}
 			}
 
-			const float content_h = nk_window_get_height(ctx) - 2*window_padding.y - 5*group_padding.y - 3*widget_h;
+			const float content_h = nk_window_get_height(ctx) - 3*window_padding.y - 7*group_padding.y - 4*widget_h;
 			nk_layout_row_dynamic(ctx, content_h, 1);
 			nk_flags flags = NK_WINDOW_BORDER;
 			if(handle->state.follow)
@@ -336,12 +373,12 @@ _atom_inspector_expose(struct nk_context *ctx, struct nk_rect wbounds, void *dat
 				nk_list_view_end(&lview);
 			}
 
-			const float n = 5;
+			const float n = 4;
 			const float r0 = 1.f / n;
 			const float r1 = 0.1f / 3;
 			const float r2 = r0 - r1;
-			const float footer [10] = {r1, r2, r1, r2, r1, r2, r1, r2, r1, r2};
-			nk_layout_row(ctx, NK_DYNAMIC, widget_h, 10, footer);
+			const float footer [8] = {r1, r2, r1, r2, r1, r2, r1, r2};
+			nk_layout_row(ctx, NK_DYNAMIC, widget_h, 8, footer);
 			{
 				const int32_t state_overwrite = _check(ctx, handle->state.overwrite);
 				if(state_overwrite != handle->state.overwrite)
@@ -376,14 +413,6 @@ _atom_inspector_expose(struct nk_context *ctx, struct nk_rect wbounds, void *dat
 					handle->ttl_dirty = true;
 				}
 				nk_label(ctx, "pretty", NK_TEXT_LEFT);
-
-				const int32_t state_negate = _check(ctx, handle->state.negate);
-				if(state_negate != handle->state.negate)
-				{
-					handle->state.negate = state_negate;
-					_set_bool(handle, handle->urid.negate, handle->state.negate);
-				}
-				nk_label(ctx, "negate", NK_TEXT_LEFT);
 			}
 
 			const bool max_reached = handle->n_item >= MAX_LINES;

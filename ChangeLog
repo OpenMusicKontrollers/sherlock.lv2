@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.20.0] - 13 Oct 2019
+
+### Added
+
+* sherlock:matchAll as default filter URI in atom inspector
+* filter buttons for sherlock:matchAll and time:Position in atom inspector
+
+### Changed
+
+* position of negate toggle in atom inspector
+
+### Fixed
+
+* filter logic in atom inspector
+
 ## [0.18.0] - 15 Apr 2019
 
 ### Added

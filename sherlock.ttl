@@ -165,7 +165,7 @@ sherlock:atom_inspector
 		sherlock:pretty true ;
 		sherlock:trace false ;
 		sherlock:filter sherlock:matchAll ;
-		sherlock:negate true ;
+		sherlock:negate false ;
 	] .
 
 # MIDI Inspector Plugin

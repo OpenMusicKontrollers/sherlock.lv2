@@ -5,6 +5,7 @@ project('sherlock.lv2', 'c', default_options : [
 	'b_lto=false',
 	'c_std=c11'])
 
+build_root = meson.build_root()
 static_link = meson.is_cross_build()
 
 cc = meson.get_compiler('c')
@@ -138,7 +139,7 @@ endif
 
 if lv2lint.found()
 	test('LV2 lint', lv2lint,
-		args : ['-Ewarn',
+		args : ['-Ewarn', '-I', join_paths(build_root, ''),
 			'http://open-music-kontrollers.ch/lv2/sherlock#atom_inspector',
 			'http://open-music-kontrollers.ch/lv2/sherlock#midi_inspector',
 			'http://open-music-kontrollers.ch/lv2/sherlock#osc_inspector'])

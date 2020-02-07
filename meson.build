@@ -62,8 +62,8 @@ ui_srcs = ['sherlock_nk.c',
 	'osc_inspector_nk.c',
 	lfiles]
 
-c_args = ['-fvisibility=hidden',
-	'-ffast-math']
+c_args = [
+	'-fvisibility=hidden']
 
 if host_machine.system() == 'windows'
 	add_languages('cpp')

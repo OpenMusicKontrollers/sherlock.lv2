@@ -322,13 +322,14 @@ _midi_inspector_expose(struct nk_context *ctx, struct nk_rect wbounds, void *dat
 								case LV2_MIDI_MSG_NOTE_PRESSURE:
 								{
 									nk_layout_row_push(ctx, 0.1);
-									nk_labelf_colored(ctx, NK_TEXT_RIGHT, cwhite, "Ch:%02"PRIu8,
+									nk_labelf_colored(ctx, NK_TEXT_RIGHT, cwhite, "Ch:%2"PRIu8,
 										(msg[0] & 0x0f) + 1);
 
 									nk_layout_row_push(ctx, 0.2);
 									int8_t octave;
 									const char *key = _note(msg[1], &octave);
-									nk_labelf_colored(ctx, NK_TEXT_RIGHT, cwhite, "%s%+"PRIi8, key, octave);
+									nk_labelf_colored(ctx, NK_TEXT_RIGHT, cwhite, "%s%+"PRIi8"=%3"PRIu8,
+										key, octave, msg[1]);
 
 									nk_layout_row_push(ctx, 0.1);
 									nk_labelf_colored(ctx, NK_TEXT_RIGHT, cwhite, "%"PRIu8, msg[2]);
@@ -336,7 +337,7 @@ _midi_inspector_expose(struct nk_context *ctx, struct nk_rect wbounds, void *dat
 								case LV2_MIDI_MSG_CONTROLLER:
 								{
 									nk_layout_row_push(ctx, 0.1);
-									nk_labelf_colored(ctx, NK_TEXT_RIGHT, cwhite, "Ch:%02"PRIu8,
+									nk_labelf_colored(ctx, NK_TEXT_RIGHT, cwhite, "Ch:%2"PRIu8,
 										(msg[0] & 0x0f) + 1);
 
 									const midi_msg_t *controller_msg = _search_controller(msg[1]);
@@ -344,7 +345,8 @@ _midi_inspector_expose(struct nk_context *ctx, struct nk_rect wbounds, void *dat
 										? controller_msg->key
 										: "Unknown";
 									nk_layout_row_push(ctx, 0.2);
-									nk_label_colored(ctx, controller_str, NK_TEXT_RIGHT, cwhite);
+									nk_labelf_colored(ctx, NK_TEXT_RIGHT, cwhite, "%s=%3"PRIu8"",
+										controller_str, msg[1]);
 
 									nk_layout_row_push(ctx, 0.1);
 									nk_labelf_colored(ctx, NK_TEXT_RIGHT, cwhite, "%"PRIu8, msg[2]);
@@ -354,7 +356,7 @@ _midi_inspector_expose(struct nk_context *ctx, struct nk_rect wbounds, void *dat
 								case LV2_MIDI_MSG_CHANNEL_PRESSURE:
 								{
 									nk_layout_row_push(ctx, 0.1);
-									nk_labelf_colored(ctx, NK_TEXT_RIGHT, cwhite, "Ch:%02"PRIu8,
+									nk_labelf_colored(ctx, NK_TEXT_RIGHT, cwhite, "Ch:%2"PRIu8,
 										(msg[0] & 0x0f) + 1);
 
 									nk_layout_row_push(ctx, 0.2);
@@ -368,7 +370,7 @@ _midi_inspector_expose(struct nk_context *ctx, struct nk_rect wbounds, void *dat
 									const int16_t bender = (((int16_t)msg[2] << 7) | msg[1]) - 0x2000;
 
 									nk_layout_row_push(ctx, 0.1);
-									nk_labelf_colored(ctx, NK_TEXT_RIGHT, cwhite, "Ch:%02"PRIu8,
+									nk_labelf_colored(ctx, NK_TEXT_RIGHT, cwhite, "Ch:%2"PRIu8,
 										(msg[0] & 0x0f) + 1);
 
 									nk_layout_row_push(ctx, 0.2);

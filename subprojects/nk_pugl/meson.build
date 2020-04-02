@@ -70,12 +70,13 @@ nk_pugl_gl = declare_dependency(
 	link_args : links,
 	sources : lib_srcs)
 
+cousine_regular_ttf = configure_file(
+	input : join_paths('nuklear', 'extra_font', 'Cousine-Regular.ttf'),
+	output : 'Cousine-Regular.ttf',
+	copy : true,
+	install : false)
+
 if build_examples
-	ttf = configure_file(
-		input : join_paths('nuklear', 'extra_font', 'Cousine-Regular.ttf'),
-		output : 'Cousine-Regular.ttf',
-		copy : true,
-		install : false)
 
 	executable('nk_pugl.gl', [bin_srcs],
 		c_args : c_args,

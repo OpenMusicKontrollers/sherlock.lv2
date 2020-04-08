@@ -1125,8 +1125,9 @@ nk_pugl_init(nk_pugl_window_t *win)
 	puglSetHandle(win->view, win);
 	puglSetEventFunc(win->view, _nk_pugl_event_func);
 	puglSetBackend(win->view, puglGlBackend());
-	const int stat = puglCreateWindow(win->view,
+	puglSetWindowTitle(win->view,
 		cfg->title ? cfg->title : "Nuklear");
+	const int stat = puglRealize(win->view);
 	assert(stat == 0);
 
 	win->widget = puglGetNativeWindow(win->view);

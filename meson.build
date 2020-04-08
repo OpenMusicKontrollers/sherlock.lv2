@@ -3,13 +3,20 @@ project('sherlock.lv2', 'c', default_options : [
 	'warning_level=1',
 	'werror=false',
 	'b_lto=false',
-	'c_std=c11'])
+	'c_std=gnu11'])
 
 nk_pugl = subproject('nk_pugl')
+
+lv2libdir = get_option('lv2libdir')
+
+inst_dir = join_paths(lv2libdir, meson.project_name())
+
 nk_pugl_dep = nk_pugl.get_variable('nk_pugl_gl')
 cousine_regular_ttf = nk_pugl.get_variable('cousine_regular_ttf')
 
+source_root = meson.source_root()
 build_root = meson.build_root()
+
 static_link = meson.is_cross_build()
 
 cc = meson.get_compiler('c')
@@ -27,8 +34,6 @@ ser_inc = include_directories('ser_atom.lv2')
 nk_pugl_inc = include_directories(join_paths('subprojects', 'nk_pugl'))
 inc_dir = [props_inc, osc_inc, ser_inc, nk_pugl_inc]
 
-inst_dir = join_paths(get_option('libdir'), 'lv2', meson.project_name())
-
 rawvers = run_command('cat', 'VERSION').stdout().strip()
 version = rawvers.split('.')
 
@@ -39,7 +44,6 @@ conf_data.set('MICRO_VERSION', version[2])
 
 add_project_arguments('-DSHERLOCK_VERSION="'+rawvers+'"', language : 'c')
 add_project_arguments('-D_GNU_SOURCE', language : 'c')
-add_project_arguments('-DPUGL_HAVE_GL', language : 'c')
 
 flex = find_program('flex')
 lgen = generator(flex,

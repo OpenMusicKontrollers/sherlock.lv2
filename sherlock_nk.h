@@ -26,16 +26,14 @@
 
 #define MAX_LINES 2048
 
-typedef enum _plugin_type_t plugin_type_t;
-typedef enum _item_type_t item_type_t;
 typedef struct _item_t item_t;
 typedef struct _plughandle_t plughandle_t;
 
-enum _item_type_t {
+typedef enum _item_type_t {
 	ITEM_TYPE_NONE,
 	ITEM_TYPE_FRAME,
 	ITEM_TYPE_EVENT
-};
+} item_type_t;
 
 struct _item_t {
 	item_type_t type;
@@ -54,11 +52,11 @@ struct _item_t {
 	};
 };
 
-enum _plugin_type_t {
+typedef enum _plugin_type_t {
 	SHERLOCK_ATOM_INSPECTOR,
 	SHERLOCK_MIDI_INSPECTOR,
 	SHERLOCK_OSC_INSPECTOR
-};
+} plugin_type_t;
 
 struct _plughandle_t {
 	LV2UI_Write_Function write_function;

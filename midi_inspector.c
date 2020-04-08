@@ -46,8 +46,9 @@ struct _handle_t {
 };
 
 static LV2_Handle
-instantiate(const LV2_Descriptor* descriptor, double rate,
-	const char *bundle_path, const LV2_Feature *const *features)
+instantiate(const LV2_Descriptor* descriptor, double rate __attribute__((unused)),
+	const char *bundle_path __attribute__((unused)),
+	const LV2_Feature *const *features)
 {
 	int i;
 	handle_t *handle = calloc(1, sizeof(handle_t));

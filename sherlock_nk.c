@@ -272,10 +272,10 @@ _check(struct nk_context *ctx, int32_t state)
 }
 
 static LV2UI_Handle
-instantiate(const LV2UI_Descriptor *descriptor, const char *plugin_uri,
-	const char *bundle_path, LV2UI_Write_Function write_function,
-	LV2UI_Controller controller, LV2UI_Widget *widget,
-	const LV2_Feature *const *features)
+instantiate(const LV2UI_Descriptor *descriptor __attribute__((unused)),
+	const char *plugin_uri, const char *bundle_path __attribute__((unused)),
+	LV2UI_Write_Function write_function, LV2UI_Controller controller,
+	LV2UI_Widget *widget, const LV2_Feature *const *features)
 {
 	plughandle_t *handle = calloc(1, sizeof(plughandle_t));
 	if(!handle)
@@ -455,8 +455,8 @@ _osc_bundle(plughandle_t *handle, const LV2_Atom_Object *obj)
 }
 
 static void
-port_event(LV2UI_Handle instance, uint32_t i, uint32_t size, uint32_t urid,
-	const void *buf)
+port_event(LV2UI_Handle instance, uint32_t i, uint32_t size __attribute__((unused)),
+	uint32_t urid, const void *buf)
 {
 	plughandle_t *handle = instance;
 

@@ -111,7 +111,7 @@ false          return TK_BOOL;
 %%
 
 struct nk_token *
-ttl_lex(void *data, const char *utf8, int len)
+ttl_lex(void *data __attribute__((unused)), const char *utf8, int len)
 {
 	yyscan_t scanner;
 	YY_BUFFER_STATE buf;

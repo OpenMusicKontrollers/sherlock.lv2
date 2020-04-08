@@ -1,6 +1,6 @@
 project('sherlock.lv2', 'c', default_options : [
 	'buildtype=release',
-	'warning_level=1',
+	'warning_level=3',
 	'werror=false',
 	'b_lto=false',
 	'c_std=gnu11'])

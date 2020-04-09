@@ -453,8 +453,7 @@ _atom_inspector_expose(struct nk_context *ctx, struct nk_rect wbounds, void *dat
 				handle->ttl_dirty = false;
 			}
 
-			const nk_flags flags = NK_EDIT_EDITOR
-				| NK_EDIT_READ_ONLY;
+			const nk_flags flags = NK_EDIT_BOX;
 			int len = nk_str_len(&handle->editor.string);
 
 			if(len > 0) //FIXME

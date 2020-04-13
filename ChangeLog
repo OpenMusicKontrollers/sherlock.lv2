@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.22.0] - 13 Apr 2019
+
+### Added
+
+* reporting of decimal note/controller numbers in midi inspector
+
+### Fixed
+
+* scrolling in atom inspector TTL preview
+
+### Changed
+
+* to build with pugl master
+
 ## [0.20.0] - 13 Oct 2019
 
 ### Added

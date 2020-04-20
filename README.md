@@ -51,7 +51,7 @@ folder out of the platform folder of the downloaded package into your
 
 #### Atom Inspector
 
-![Sherlock Atom Inspector](https://git.open-music-kontrollers.ch/lv2/sherlock.lv2/plain/screenshots/screenshot_1.png)
+![Sherlock Atom Inspector](/screenshots/screenshot_1.png)
 
 The _Atom Inspector_ is meant as a monitor/debug tool for LV2 plugin
 and host authors. It captures all Atom events sent to its event input port
@@ -59,7 +59,7 @@ and presents them on its user interface for convenient nested browsing.
 
 #### MIDI Inspector
 
-![Sherlock MIDI Inspector](https://git.open-music-kontrollers.ch/lv2/sherlock.lv2/plain/screenshots/screenshot_2.png)
+![Sherlock MIDI Inspector](/screenshots/screenshot_2.png)
 
 The _MIDI Inspector_ is meant as a monitor/debug tool for LV2 plugin
 and host authors. It captures all MIDI events sent to its event input port
@@ -67,7 +67,7 @@ and presents them on its user interface for convenient nested browsing.
 
 #### OSC Inspector
 
-![Sherlock OSC Inspector](https://git.open-music-kontrollers.ch/lv2/sherlock.lv2/plain/screenshots/screenshot_3.png)
+![Sherlock OSC Inspector](/screenshots/screenshot_3.png)
 
 The _OSC Inspector_ is meant as a monitor/debug tool for LV2 plugin
 and host authors. It captures all OSC events sent to its event input port

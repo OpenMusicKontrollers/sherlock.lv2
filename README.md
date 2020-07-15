@@ -33,6 +33,7 @@ folder out of the platform folder of the downloaded package into your
 #### Stable release
 
 * [sherlock.lv2-0.22.0.tar.xz](https://git.open-music-kontrollers.ch/lv2/sherlock.lv2/snapshot/sherlock.lv2-0.22.0.tar.xz)
+([sig](https://git.open-music-kontrollers.ch/lv2/sherlock.lv2/snapshot/sherlock.lv2-0.22.0.tar.xz.asc))
 
 #### Git repository
 

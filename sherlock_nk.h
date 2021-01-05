@@ -69,6 +69,8 @@ struct _plughandle_t {
 	LV2_URID event_transfer;
 	LV2_OSC_URID osc_urid;
 
+	float scale;
+
 	PROPS_T(props, MAX_NPROPS);
 	struct {
 		LV2_URID overwrite;

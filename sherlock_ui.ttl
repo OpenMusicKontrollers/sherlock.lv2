@@ -19,6 +19,7 @@
 @prefix ui:   <http://lv2plug.in/ns/extensions/ui#> .
 @prefix urid: <http://lv2plug.in/ns/ext/urid#> .
 @prefix patch: <http://lv2plug.in/ns/ext/patch#> .
+@prefix opts: <http://lv2plug.in/ns/ext/options#> .
 
 @prefix sherlock:	<http://open-music-kontrollers.ch/lv2/sherlock#> .
 
@@ -33,7 +34,8 @@ sherlock:atom_inspector_4_nk
 	] ;
 	lv2:extensionData ui:idleInterface, ui:resize ;
 	lv2:optionalFeature ui:resize ;
-	lv2:requiredFeature ui:idleInterface, urid:map, urid:unmap .
+	opts:supportedOption ui:scaleFactor ;
+	lv2:requiredFeature ui:idleInterface, urid:map, urid:unmap, opts:options .
 
 # MIDI Inspector UI
 sherlock:midi_inspector_4_nk
@@ -46,7 +48,8 @@ sherlock:midi_inspector_4_nk
 	] ;
 	lv2:extensionData ui:idleInterface, ui:resize ;
 	lv2:optionalFeature ui:resize ;
-	lv2:requiredFeature ui:idleInterface, urid:map, urid:unmap .
+	opts:supportedOption ui:scaleFactor ;
+	lv2:requiredFeature ui:idleInterface, urid:map, urid:unmap, opts:options .
 
 # OSC Inspector UI
 sherlock:osc_inspector_4_nk
@@ -59,4 +62,5 @@ sherlock:osc_inspector_4_nk
 	] ;
 	lv2:extensionData ui:idleInterface, ui:resize ;
 	lv2:optionalFeature ui:resize ;
-	lv2:requiredFeature ui:idleInterface, urid:map, urid:unmap .
+	opts:supportedOption ui:scaleFactor ;
+	lv2:requiredFeature ui:idleInterface, urid:map, urid:unmap, opts:options .

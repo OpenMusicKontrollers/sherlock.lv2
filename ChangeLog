@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.26.0] - 15 Jan 2021
+
+### Added
+
+* support for host provided scaling factor
+* support for notifying host about changed state
+
 ## [0.24.0] - 15 Jul 2020
 
 ### Added

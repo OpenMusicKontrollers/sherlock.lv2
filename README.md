@@ -21,7 +21,7 @@ folder out of the platform folder of the downloaded package into your
 
 #### Stable release
 
-* [sherlock.lv2-0.24.0.zip](https://dl.open-music-kontrollers.ch/sherlock.lv2/stable/sherlock.lv2-0.24.0.zip) ([sig](https://dl.open-music-kontrollers.ch/sherlock.lv2/stable/sherlock.lv2-0.24.0.zip.sig))
+* [sherlock.lv2-0.26.0.zip](https://dl.open-music-kontrollers.ch/sherlock.lv2/stable/sherlock.lv2-0.26.0.zip) ([sig](https://dl.open-music-kontrollers.ch/sherlock.lv2/stable/sherlock.lv2-0.26.0.zip.sig))
 
 #### Unstable (nightly) release
 
@@ -31,8 +31,8 @@ folder out of the platform folder of the downloaded package into your
 
 #### Stable release
 
-* [sherlock.lv2-0.24.0.tar.xz](https://git.open-music-kontrollers.ch/lv2/sherlock.lv2/snapshot/sherlock.lv2-0.24.0.tar.xz)
-([sig](https://git.open-music-kontrollers.ch/lv2/sherlock.lv2/snapshot/sherlock.lv2-0.24.0.tar.xz.asc))
+* [sherlock.lv2-0.26.0.tar.xz](https://git.open-music-kontrollers.ch/lv2/sherlock.lv2/snapshot/sherlock.lv2-0.26.0.tar.xz)
+([sig](https://git.open-music-kontrollers.ch/lv2/sherlock.lv2/snapshot/sherlock.lv2-0.26.0.tar.xz.asc))
 
 #### Git repository
 

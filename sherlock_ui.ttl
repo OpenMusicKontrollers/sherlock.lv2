@@ -33,9 +33,9 @@ sherlock:atom_inspector_4_nk
 		ui:protocol atom:eventTransfer
 	] ;
 	lv2:extensionData ui:idleInterface, ui:resize ;
-	lv2:optionalFeature ui:resize ;
+	lv2:optionalFeature ui:resize, opts:options ;
 	opts:supportedOption ui:scaleFactor ;
-	lv2:requiredFeature ui:idleInterface, urid:map, urid:unmap, opts:options .
+	lv2:requiredFeature ui:idleInterface, urid:map, urid:unmap, ui:parent .
 
 # MIDI Inspector UI
 sherlock:midi_inspector_4_nk
@@ -47,9 +47,9 @@ sherlock:midi_inspector_4_nk
 		ui:protocol atom:eventTransfer
 	] ;
 	lv2:extensionData ui:idleInterface, ui:resize ;
-	lv2:optionalFeature ui:resize ;
+	lv2:optionalFeature ui:resize, opts:options ;
 	opts:supportedOption ui:scaleFactor ;
-	lv2:requiredFeature ui:idleInterface, urid:map, urid:unmap, opts:options .
+	lv2:requiredFeature ui:idleInterface, urid:map, urid:unmap, ui:parent .
 
 # OSC Inspector UI
 sherlock:osc_inspector_4_nk
@@ -61,6 +61,6 @@ sherlock:osc_inspector_4_nk
 		ui:protocol atom:eventTransfer
 	] ;
 	lv2:extensionData ui:idleInterface, ui:resize ;
-	lv2:optionalFeature ui:resize ;
+	lv2:optionalFeature ui:resize, opts:options ;
 	opts:supportedOption ui:scaleFactor ;
-	lv2:requiredFeature ui:idleInterface, urid:map, urid:unmap, opts:options .
+	lv2:requiredFeature ui:idleInterface, urid:map, urid:unmap, ui:parent .

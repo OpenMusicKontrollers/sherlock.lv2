@@ -344,40 +344,6 @@ instantiate(const LV2UI_Descriptor *descriptor __attribute__((unused)),
 	handle->urid.filter = props_map(&handle->props, SHERLOCK_URI"#filter");
 	handle->urid.negate = props_map(&handle->props, SHERLOCK_URI"#negate");
 
-	nk_pugl_config_t *cfg = &handle->win.cfg;
-	cfg->height = 700;
-	cfg->resizable = true;
-	cfg->ignore = false;
-	cfg->class = "sherlock_inspector";
-	cfg->title = "Sherlock Inspector";
-	cfg->parent = (intptr_t)parent;
-	cfg->host_resize = host_resize;
-	cfg->data = handle;
-	if(!strcmp(plugin_uri, SHERLOCK_MIDI_INSPECTOR_URI))
-	{
-		handle->type = SHERLOCK_MIDI_INSPECTOR,
-		cfg->width = 600;
-		cfg->expose = _midi_inspector_expose;
-	}
-	else if(!strcmp(plugin_uri, SHERLOCK_ATOM_INSPECTOR_URI))
-	{
-		handle->type = SHERLOCK_ATOM_INSPECTOR,
-		cfg->width = 1200;
-		cfg->expose = _atom_inspector_expose;
-	}
-	else if(!strcmp(plugin_uri, SHERLOCK_OSC_INSPECTOR_URI))
-	{
-		handle->type = SHERLOCK_OSC_INSPECTOR,
-		cfg->width = 600;
-		cfg->expose = _osc_inspector_expose;
-	}
-
-	if(asprintf(&cfg->font.face, "%sCousine-Regular.ttf", bundle_path) == -1)
-		cfg->font.face= NULL;
-	cfg->font.size = 13;
-
-	*(intptr_t *)widget = nk_pugl_init(&handle->win);
-
 	const LV2_URID ui_scaleFactor = handle->map->map(handle->map->handle,
 		LV2_UI__scaleFactor);
 
@@ -393,8 +359,42 @@ instantiate(const LV2UI_Descriptor *descriptor __attribute__((unused)),
 
 	if(handle->scale == 0.f)
 	{
-		handle->scale = nk_pugl_get_scale(&handle->win);
+		handle->scale = nk_pugl_get_scale();
 	}
+
+	nk_pugl_config_t *cfg = &handle->win.cfg;
+	cfg->height = 700 * handle->scale;
+	cfg->resizable = true;
+	cfg->ignore = false;
+	cfg->class = "sherlock_inspector";
+	cfg->title = "Sherlock Inspector";
+	cfg->parent = (intptr_t)parent;
+	cfg->host_resize = host_resize;
+	cfg->data = handle;
+	if(!strcmp(plugin_uri, SHERLOCK_MIDI_INSPECTOR_URI))
+	{
+		handle->type = SHERLOCK_MIDI_INSPECTOR,
+		cfg->width = 600 * handle->scale;
+		cfg->expose = _midi_inspector_expose;
+	}
+	else if(!strcmp(plugin_uri, SHERLOCK_ATOM_INSPECTOR_URI))
+	{
+		handle->type = SHERLOCK_ATOM_INSPECTOR,
+		cfg->width = 1200 * handle->scale;
+		cfg->expose = _atom_inspector_expose;
+	}
+	else if(!strcmp(plugin_uri, SHERLOCK_OSC_INSPECTOR_URI))
+	{
+		handle->type = SHERLOCK_OSC_INSPECTOR,
+		cfg->width = 600 * handle->scale;
+		cfg->expose = _osc_inspector_expose;
+	}
+
+	if(asprintf(&cfg->font.face, "%sCousine-Regular.ttf", bundle_path) == -1)
+		cfg->font.face= NULL;
+	cfg->font.size = 13 * handle->scale;
+
+	*(intptr_t *)widget = nk_pugl_init(&handle->win);
 
 	nk_pugl_show(&handle->win);
 

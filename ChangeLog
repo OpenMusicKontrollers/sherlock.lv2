@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.28.0] - 14 Jan 2021
+
+### Fixed
+
+* license URI in turtle manifest
+* font scaling on high DPI screens
+
+### Added
+
+* missing ui:parent feature in turtle manifest
+
+### Updated
+
+* to latest pugl
+
 ## [0.26.0] - 15 Jan 2021
 
 ### Added
